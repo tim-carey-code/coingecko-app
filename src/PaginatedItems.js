@@ -15,7 +15,10 @@ function PaginatedItems({ itemsPerPage, coinList }) {
 
   const handlePageClick = (e) => {
     const newOffset = (e.selected * itemsPerPage) % coinList.length;
-
+    window.scrollTo({
+      top: 100,
+      behavior: "smooth",
+    });
     setItemOffset(newOffset);
   };
 
@@ -23,19 +26,17 @@ function PaginatedItems({ itemsPerPage, coinList }) {
     <>
       <Coins currentItems={currentItems} />
       <ReactPaginate
-        breakLabel="..."
         nextLabel="Next >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
         pageCount={pageCount}
         previousLabel="< Previous"
-        renderOnZeroPageCount={null}
+        previousClassName="previous"
+        breakLabel="..."
         containerClassName="pagination"
-        pageClassName="page-item"
         activeClassName="active"
-        breakClassName="page-item"
-        previousClassName="page-item"
-        nextClassName="page-item"
+        renderOnZeroPageCount={null}
       />
     </>
   );
