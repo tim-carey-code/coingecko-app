@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MdSearch, MdClose } from "react-icons/md";
-import "./Search.css";
+import SearchCSS from "./Search.module.css";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -48,22 +48,22 @@ function Search() {
   };
 
   return (
-    <div className="search">
-      <div className="searchInputs">
+    <div className={SearchCSS.search}>
+      <div className={SearchCSS.searchInputs}>
         <input type="text" value={search} onChange={handleChange} />
-        <div className="searchIcon">
+        <div className={SearchCSS.searchIcon}>
           {filteredData.length === 0 ? (
             <MdSearch />
           ) : (
-            <MdClose id="clearBtn" onClick={clearInput} />
+            <MdClose id={SearchCSS.clearBtn} onClick={clearInput} />
           )}
         </div>
       </div>
       {filteredData.length !== 0 && (
-        <div className="dataResult">
+        <div className={SearchCSS.dataResult}>
           {filteredData.slice(0, 15).map((coin, key) => {
             return (
-              <a className="dataItem" href={`/${coin.id}`}>
+              <a className={SearchCSS.dataItem} href={`/${coin.id}`}>
                 <p>{coin.name}</p>
               </a>
             );

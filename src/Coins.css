@@ -5,6 +5,14 @@
   overflow-x: auto;
 }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -24,9 +32,10 @@ td p {
   display: inline;
 }
 
-td > img {
+td a img {
   width: 30px;
   height: 30px;
+  display: block;
 }
 
 .tw-flex {
@@ -63,13 +72,16 @@ td > img {
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  td img {
+  td a img {
     width: 20px;
     height: 20px;
-    position: absolute;
-    right: 160px;
+    padding-right: 5px;
   }
 
   td:before {
@@ -78,6 +90,7 @@ td > img {
     left: 6px;
     width: 45%;
     white-space: nowrap;
+    font-weight: 600;
   }
 
   td:nth-of-type(1):before {
@@ -102,6 +115,14 @@ td > img {
     content: "7d";
   }
   td:nth-of-type(8):before {
-    content: "Market Cap";
+    content: "Cap";
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
   }
 }

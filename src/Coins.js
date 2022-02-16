@@ -1,6 +1,7 @@
 import "./Coins.css";
 
 function Coins({ currentItems }) {
+  let color;
   return (
     <>
       <div className="table-container">
@@ -23,7 +24,6 @@ function Coins({ currentItems }) {
                 <tr>
                   <td>#{coin.market_cap_rank}</td>
                   <td>
-                    <img src={coin.image} alt={coin.name} />
                     <a
                       style={{
                         color: "inherit",
@@ -31,6 +31,8 @@ function Coins({ currentItems }) {
                       }}
                       href={`/${coin.id}`}
                     >
+                      <img src={coin.image} alt={coin.name} />
+
                       <p>{coin.name}</p>
                     </a>
                   </td>
@@ -42,13 +44,47 @@ function Coins({ currentItems }) {
                     {coin.current_price.toLocaleString()}
                   </td>
                   <td>
-                    {coin.price_change_percentage_1h_in_currency.toFixed(2)}%
+                    {coin.price_change_percentage_1h_in_currency < 0 ? (
+                      <p className="red">
+                        {coin.price_change_percentage_1h_in_currency.toFixed(2)}
+                        %
+                      </p>
+                    ) : (
+                      <p className="green">
+                        {coin.price_change_percentage_1h_in_currency.toFixed(2)}
+                        %
+                      </p>
+                    )}
                   </td>
                   <td>
-                    {coin.price_change_percentage_24h_in_currency.toFixed(2)}%
+                    {coin.price_change_percentage_24h_in_currency < 0 ? (
+                      <p className="red">
+                        {coin.price_change_percentage_24h_in_currency.toFixed(
+                          2
+                        )}
+                        %
+                      </p>
+                    ) : (
+                      <p className="green">
+                        {coin.price_change_percentage_24h_in_currency.toFixed(
+                          2
+                        )}
+                        %
+                      </p>
+                    )}
                   </td>
                   <td>
-                    {coin.price_change_percentage_7d_in_currency.toFixed(2)}%
+                    {coin.price_change_percentage_7d_in_currency < 0 ? (
+                      <p className="red">
+                        {coin.price_change_percentage_7d_in_currency.toFixed(2)}
+                        %
+                      </p>
+                    ) : (
+                      <p className="green">
+                        {coin.price_change_percentage_7d_in_currency.toFixed(2)}
+                        %
+                      </p>
+                    )}
                   </td>
                   <td>
                     <strong>$</strong>

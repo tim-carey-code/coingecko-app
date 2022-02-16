@@ -73,3 +73,23 @@ a {
 #clearBtn {
   cursor: pointer;
 }
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .search input {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 10px;
+    padding: 15px;
+    height: 1px;
+    width: 150px;
+  }
+
+  .searchIcon svg {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}

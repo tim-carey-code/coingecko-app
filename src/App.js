@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import PaginatedItems from "./PaginatedItems";
-import Search from "./Search";
-import Coin from "./Coin";
 import "./App.css";
 
 function App() {
@@ -29,9 +27,6 @@ function App() {
 
   return (
     <>
-      <h1>Coingecko App</h1>
-      <Search />
-      <br />
       <PaginatedItems itemsPerPage={10} coinList={coinList} />
     </>
   );

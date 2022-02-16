@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Coins from "./Coins";
+import "./PaginatedItems.css";
 
 function PaginatedItems({ itemsPerPage, coinList }) {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [browserWidth, setBrowserWidth] = useState();
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -22,16 +24,22 @@ function PaginatedItems({ itemsPerPage, coinList }) {
     setItemOffset(newOffset);
   };
 
+  const handleResize = () => {
+    setBrowserWidth(window.innerWidth);
+  };
+
+  window.addEventListener("resize", handleResize);
+
   return (
     <>
       <Coins currentItems={currentItems} />
       <ReactPaginate
-        nextLabel="Next >"
+        nextLabel={browserWidth <= 400 ? ">" : "> Next"}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
+        pageRangeDisplayed={browserWidth <= 400 ? 1 : 3}
+        marginPagesDisplayed={browserWidth <= 400 ? 1 : 2}
         pageCount={pageCount}
-        previousLabel="< Previous"
+        previousLabel={browserWidth <= 400 ? "<" : "< Prev"}
         previousClassName="previous"
         breakLabel="..."
         containerClassName="pagination"
