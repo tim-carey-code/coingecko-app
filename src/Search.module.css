@@ -9,7 +9,6 @@
 }
 
 .search input {
-  background-color: white;
   border: 1px solid black;
   border-radius: 2px;
   border-top-right-radius: 0px;
@@ -23,7 +22,6 @@
 .searchIcon {
   height: 60px;
   width: 50px;
-  background-color: white;
   display: grid;
   place-items: center;
 }
@@ -40,7 +38,6 @@
   margin-right: 45px;
   width: 300px;
   height: 200px;
-  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   overflow-y: auto;

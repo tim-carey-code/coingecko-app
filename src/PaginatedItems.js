@@ -31,7 +31,7 @@ function PaginatedItems({ itemsPerPage, coinList }) {
   window.addEventListener("resize", handleResize);
 
   return (
-    <>
+    <div>
       <Coins currentItems={currentItems} />
       <ReactPaginate
         nextLabel={browserWidth <= 400 ? ">" : "> Next"}
@@ -46,7 +46,7 @@ function PaginatedItems({ itemsPerPage, coinList }) {
         activeClassName="active"
         renderOnZeroPageCount={null}
       />
-    </>
+    </div>
   );
 }
 

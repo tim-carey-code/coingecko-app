@@ -18,9 +18,9 @@
   padding: 6px 12px;
   line-height: 1.42857143;
   text-decoration: none;
-  color: #2c689c;
-  background-color: #fff;
-  border: 1px solid black;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
   margin-left: -1px;
 }
 
@@ -29,13 +29,12 @@
 }
 
 .pagination > li.active > a {
-  color: #fff;
-  background-color: #218838;
+  color: black;
+  background-color: white;
   border-color: #1e7e34;
 }
 
-/* Style the active class (and buttons on mouse-over) */
 .pagination > li > a:hover {
-  background-color: #218838;
-  color: white;
+  background-color: white;
+  color: black;
 }

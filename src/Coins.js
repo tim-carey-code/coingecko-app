@@ -1,12 +1,19 @@
 import "./Coins.css";
+import { useTheme } from "./ThemeContext";
 
 function Coins({ currentItems }) {
-  let color;
+  const darkTheme = useTheme();
+
+  const themeStyles = {
+    borderBottom: darkTheme ? "1px solid white" : "1px solid black",
+    borderTop: darkTheme ? "1px solid white" : "1px solid black",
+  };
+
   return (
     <>
       <div className="table-container">
-        <table>
-          <thead>
+        <table id="coin-table">
+          <thead style={themeStyles}>
             <tr>
               <th>Rank</th>
               <th>Coin</th>
@@ -20,17 +27,11 @@ function Coins({ currentItems }) {
           </thead>
           {currentItems &&
             currentItems.map((coin) => (
-              <tbody key={coin.id}>
+              <tbody style={themeStyles} key={coin.id}>
                 <tr>
                   <td>#{coin.market_cap_rank}</td>
                   <td>
-                    <a
-                      style={{
-                        color: "inherit",
-                        textDecoration: "underline",
-                      }}
-                      href={`/${coin.id}`}
-                    >
+                    <a href={`/${coin.id}`}>
                       <img src={coin.image} alt={coin.name} />
 
                       <p>{coin.name}</p>

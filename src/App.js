@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
-import PaginatedItems from "./PaginatedItems";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useTheme, useThemeUpdate } from "./ThemeContext";
+import Coin from "./Coin";
+import Navbar from "./Navbar";
+import Home from "./Home";
 import "./App.css";
 
 function App() {
-  const [coinList, setCoinList] = useState([]);
+  const darkTheme = useTheme();
 
-  const fetchCoinList = async () => {
-    try {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
-      );
-      const data = await response.json();
-      setCoinList(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const themeStyles = {
+    backgroundColor: darkTheme ? "#000" : "#FFF",
+    color: darkTheme ? "#fff" : "#000",
   };
 
-  useEffect(() => {
-    fetchCoinList();
-  }, []);
-
-  if (!coinList) {
-    return <p>Loading...</p>;
-  }
+  document.body.style.backgroundColor = themeStyles.backgroundColor;
+  document.body.style.color = themeStyles.color;
 
   return (
-    <>
-      <PaginatedItems itemsPerPage={10} coinList={coinList} />
-    </>
+    <div>
+      <Navbar />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/:coinid" element={<Coin />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
