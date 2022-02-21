@@ -1,4 +1,4 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useState, createContext, useEffect } from "react";
 
 const ThemeContext = createContext();
 const ThemeUpdateContext = createContext();
@@ -12,7 +12,9 @@ export function useThemeUpdate() {
 }
 
 export function ThemeProvider({ children }) {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const storagePref = localStorage.getItem("dark-mode");
+  const parse = JSON.parse(storagePref);
+  const [darkTheme, setDarkTheme] = useState(parse);
 
   const toggleTheme = () => {
     setDarkTheme((prevDarkTheme) => !prevDarkTheme);

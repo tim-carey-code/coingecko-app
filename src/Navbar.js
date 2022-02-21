@@ -1,17 +1,26 @@
+import { useState, useEffect } from "react";
 import Search from "./Search";
-import { useThemeUpdate } from "./ThemeContext";
+import ThemeSwitch from "./ThemeSwitch";
+import { MdWbSunny } from "react-icons/md";
+import { IoMdMoon } from "react-icons/io";
 import NavCSS from "./Navbar.module.css";
+import { useTheme } from "./ThemeContext";
 
 function Navbar() {
-  const toggleTheme = useThemeUpdate();
-
   return (
-    <div>
-      <button onClick={toggleTheme}>Toggle</button>
+    <div className={NavCSS.container}>
+      <div className={NavCSS.switchWrapper}>
+        <MdWbSunny className={NavCSS.themeIcon} />
+        <ThemeSwitch />
+        <IoMdMoon className={NavCSS.themeIcon} />
+      </div>
       <h1 className={NavCSS.header}>
         <a href="/">CoinGecko App</a>
       </h1>
-      <Search />
+      <div className={NavCSS.search}>
+        <br />
+        <Search />
+      </div>
     </div>
   );
 }

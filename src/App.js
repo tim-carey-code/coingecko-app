@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useTheme, useThemeUpdate } from "./ThemeContext";
+import { useTheme } from "./ThemeContext";
 import Coin from "./Coin";
 import Navbar from "./Navbar";
 import Home from "./Home";
@@ -12,6 +13,14 @@ function App() {
     backgroundColor: darkTheme ? "#000" : "#FFF",
     color: darkTheme ? "#fff" : "#000",
   };
+
+  useEffect(() => {
+    if (darkTheme) {
+      localStorage.setItem("dark-mode", true);
+    } else {
+      localStorage.setItem("dark-mode", false);
+    }
+  }, [darkTheme]);
 
   document.body.style.backgroundColor = themeStyles.backgroundColor;
   document.body.style.color = themeStyles.color;

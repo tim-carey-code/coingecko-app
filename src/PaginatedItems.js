@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTheme } from "./ThemeContext";
 import ReactPaginate from "react-paginate";
 import Coins from "./Coins";
 import "./PaginatedItems.css";
@@ -8,6 +9,7 @@ function PaginatedItems({ itemsPerPage, coinList }) {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [browserWidth, setBrowserWidth] = useState();
+  const darkTheme = useTheme();
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -40,10 +42,17 @@ function PaginatedItems({ itemsPerPage, coinList }) {
         marginPagesDisplayed={browserWidth <= 400 ? 1 : 2}
         pageCount={pageCount}
         previousLabel={browserWidth <= 400 ? "<" : "< Prev"}
-        previousClassName="previous"
         breakLabel="..."
         containerClassName="pagination"
-        activeClassName="active"
+        pageClassName="page"
+        previousClassName="page"
+        nextClassName="page"
+        nextLinkClassName={darkTheme ? "page-link-dark" : "page-link-light"}
+        breakClassName="page"
+        breakLinkClassName={darkTheme ? "page-link-dark" : "page-link-light"}
+        pageLinkClassName={darkTheme ? "page-link-dark" : "page-link-light"}
+        previousLinkClassName={darkTheme ? "page-link-dark" : "page-link-light"}
+        activeLinkClassName="active"
         renderOnZeroPageCount={null}
       />
     </div>
