@@ -22,12 +22,6 @@ a:visited {
   color: green;
 }
 
-/* thead,
-tbody {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-} */
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -54,6 +48,25 @@ td a img {
 .tw-flex {
   display: flex;
   align-items: center;
+}
+
+.star-icon {
+  position: relative;
+  top: 7px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.star-icon-clicked {
+  position: relative;
+  top: 7px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: yellow;
 }
 
 @media only screen and (max-width: 760px),

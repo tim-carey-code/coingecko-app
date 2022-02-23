@@ -9,17 +9,14 @@ import { useTheme } from "./ThemeContext";
 function Navbar() {
   return (
     <div className={NavCSS.container}>
+      <h1 className={NavCSS.header}>
+        <a href="/">CoinGecko App</a>
+      </h1>
+      <Search />
       <div className={NavCSS.switchWrapper}>
         <MdWbSunny className={NavCSS.themeIcon} />
         <ThemeSwitch />
         <IoMdMoon className={NavCSS.themeIcon} />
-      </div>
-      <h1 className={NavCSS.header}>
-        <a href="/">CoinGecko App</a>
-      </h1>
-      <div className={NavCSS.search}>
-        <br />
-        <Search />
       </div>
     </div>
   );

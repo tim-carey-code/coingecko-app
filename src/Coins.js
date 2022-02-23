@@ -1,7 +1,12 @@
+import React, { useState } from "react";
 import "./Coins.css";
 import { useTheme } from "./ThemeContext";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 function Coins({ currentItems }) {
+  const [ratingClicked, setRatingClicked] = useState(false);
+  const [coinClickedId, setCoinClickedId] = useState();
+  const [favorites, setFavorites] = useState([]);
   const darkTheme = useTheme();
 
   const themeStyles = {
@@ -9,6 +14,11 @@ function Coins({ currentItems }) {
     borderTop: darkTheme ? "1px solid white" : "1px solid black",
   };
 
+  const handleClick = (coinId) => {
+    setFavorites((oldArray) => [...oldArray, coinId]);
+  };
+
+  console.log(favorites);
   return (
     <>
       <div className="table-container">
@@ -29,7 +39,22 @@ function Coins({ currentItems }) {
             currentItems.map((coin) => (
               <tbody style={themeStyles} key={coin.id}>
                 <tr>
-                  <td>#{coin.market_cap_rank}</td>
+                  <td>
+                    <span onClick={() => handleClick(coin.id)}>
+                      {coin.id === coinClickedId && ratingClicked ? (
+                        <AiFillStar
+                          onClick={() => setRatingClicked(!ratingClicked)}
+                          className="star-icon-clicked"
+                        />
+                      ) : (
+                        <AiOutlineStar
+                          onClick={() => setRatingClicked(!ratingClicked)}
+                          className="star-icon"
+                        />
+                      )}
+                    </span>
+                    # {coin.market_cap_rank}
+                  </td>
                   <td>
                     <a href={`/${coin.id}`}>
                       <img src={coin.image} alt={coin.name} />
