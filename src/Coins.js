@@ -1,24 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Coins.css";
 import { useTheme } from "./ThemeContext";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 function Coins({ currentItems }) {
-  const [ratingClicked, setRatingClicked] = useState(false);
-  const [coinClickedId, setCoinClickedId] = useState();
   const [favorites, setFavorites] = useState([]);
   const darkTheme = useTheme();
+
+  const getFavoriteCoins = JSON.parse(localStorage.getItem("favorites"));
+
+  useEffect(() => {
+    if (getFavoriteCoins !== 0) {
+      setFavorites([...getFavoriteCoins]);
+    }
+  }, []);
 
   const themeStyles = {
     borderBottom: darkTheme ? "1px solid white" : "1px solid black",
     borderTop: darkTheme ? "1px solid white" : "1px solid black",
   };
 
-  const handleClick = (coinId) => {
-    setFavorites((oldArray) => [...oldArray, coinId]);
+  const addFav = (coinId) => {
+    let array = favorites;
+    let addArray = true;
+    array.map((item, key) => {
+      if (item === coinId) {
+        array.splice(key, 1);
+        addArray = false;
+      }
+    });
+    if (addArray) {
+      array.push(coinId);
+    }
+    setFavorites([...array]);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
-  console.log(favorites);
   return (
     <>
       <div className="table-container">
@@ -40,15 +57,15 @@ function Coins({ currentItems }) {
               <tbody style={themeStyles} key={coin.id}>
                 <tr>
                   <td>
-                    <span onClick={() => handleClick(coin.id)}>
-                      {coin.id === coinClickedId && ratingClicked ? (
+                    <span>
+                      {favorites.includes(coin.id) ? (
                         <AiFillStar
-                          onClick={() => setRatingClicked(!ratingClicked)}
+                          onClick={() => addFav(coin.id)}
                           className="star-icon-clicked"
                         />
                       ) : (
                         <AiOutlineStar
-                          onClick={() => setRatingClicked(!ratingClicked)}
+                          onClick={() => addFav(coin.id)}
                           className="star-icon"
                         />
                       )}

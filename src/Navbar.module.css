@@ -33,3 +33,16 @@
 
   border-bottom: 1px solid #218838;
 }
+
+@media only screen and (max-width: 760px) {
+  .header > a {
+    font-size: 12px;
+    position: absolute;
+    top: 15px;
+  }
+
+  .themeIcon {
+    height: 15px;
+    width: 15px;
+  }
+}

@@ -10,7 +10,7 @@ function App() {
   const darkTheme = useTheme();
 
   const themeStyles = {
-    backgroundColor: darkTheme ? "#000" : "#FFF",
+    backgroundColor: darkTheme ? "#121212" : "#FFF",
     color: darkTheme ? "#fff" : "#000",
   };
 

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { MdSearch, MdClose } from "react-icons/md";
+import { useTheme } from "./ThemeContext";
 import SearchCSS from "./Search.module.css";
 
 function Search() {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [coins, setCoins] = useState();
+
+  const darkTheme = useTheme();
 
   const searchCoins = async () => {
     try {
@@ -60,10 +63,19 @@ function Search() {
         </div>
       </div>
       {filteredData.length !== 0 && (
-        <div className={SearchCSS.dataResult}>
+        <div
+          className={
+            darkTheme ? SearchCSS.dataResultDark : SearchCSS.dataResult
+          }
+        >
           {filteredData.slice(0, 15).map((coin, key) => {
             return (
-              <a className={SearchCSS.dataItem} href={`/${coin.id}`}>
+              <a
+                className={
+                  darkTheme ? SearchCSS.dataItemDark : SearchCSS.dataItem
+                }
+                href={`/${coin.id}`}
+              >
                 <p>{coin.name}</p>
               </a>
             );

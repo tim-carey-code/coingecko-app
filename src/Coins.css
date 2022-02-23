@@ -10,8 +10,12 @@
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
   color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 a:visited {
@@ -37,6 +41,14 @@ th {
 
 td p {
   display: inline;
+}
+
+tr:hover {
+  background-color: #1e1e1e;
+}
+
+thead {
+  background-color: #343a40;
 }
 
 td a img {
@@ -66,7 +78,7 @@ td a img {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: yellow;
+  color: #fc6;
 }
 
 @media only screen and (max-width: 760px),
