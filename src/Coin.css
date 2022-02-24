@@ -1,1 +1,18 @@
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px;
+}
 
+canvas {
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .chart-container {
+    width: 95%;
+    margin: 10px;
+  }
+}

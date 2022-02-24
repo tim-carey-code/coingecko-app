@@ -43,11 +43,19 @@ td p {
   display: inline;
 }
 
-tr:hover {
+.tr-dark:hover {
   background-color: #1e1e1e;
 }
 
-thead {
+.tr-light:hover {
+  background-color: #f9fafb;
+}
+
+.thead-light:hover {
+  background-color: #f9fafb;
+}
+
+.thead-dark:hover {
   background-color: #343a40;
 }
 

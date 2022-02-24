@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 0;
 }
 
@@ -22,6 +22,7 @@
   background-color: #121212;
   border: 1px solid white;
   margin-left: -1px;
+  cursor: pointer;
 }
 
 .page-link-light {
@@ -34,6 +35,7 @@
   background-color: white;
   border: 1px solid black;
   margin-left: -1px;
+  cursor: pointer;
 }
 
 .active {

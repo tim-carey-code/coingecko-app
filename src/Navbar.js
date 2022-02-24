@@ -12,7 +12,7 @@ function Navbar() {
       <h1 className={NavCSS.header}>
         <a href="/">CoinGecko App</a>
       </h1>
-      <Search />
+      <Search className={NavCSS.searchBar} />
       <div className={NavCSS.switchWrapper}>
         <MdWbSunny className={NavCSS.themeIcon} />
         <ThemeSwitch />

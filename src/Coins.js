@@ -40,8 +40,11 @@ function Coins({ currentItems }) {
     <>
       <div className="table-container">
         <table id="coin-table">
-          <thead style={themeStyles}>
-            <tr>
+          <thead
+            className={darkTheme ? "thead-dark" : "thead-light"}
+            style={themeStyles}
+          >
+            <tr className={darkTheme ? "tr-dark" : "tr-light"}>
               <th>Rank</th>
               <th>Coin</th>
               <th>Symbol</th>
@@ -55,7 +58,7 @@ function Coins({ currentItems }) {
           {currentItems &&
             currentItems.map((coin) => (
               <tbody style={themeStyles} key={coin.id}>
-                <tr>
+                <tr className={darkTheme ? "tr-dark" : "tr-light"}>
                   <td>
                     <span>
                       {favorites.includes(coin.id) ? (

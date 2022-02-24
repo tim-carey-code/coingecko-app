@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Coin.css";
+import { useTheme } from "./ThemeContext";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import CoinStatistics from "./CoinStatistics";
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +28,8 @@ function Coin() {
   const [coin, setCoin] = useState([]);
   const [chartData, setChartData] = useState([]);
 
+  const darkTheme = useTheme();
+
   const coinId = window.location.pathname.split("/").splice(1).toString();
 
   const coinData = async () => {
@@ -38,7 +42,7 @@ function Coin() {
 
   const getChart = async () => {
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=14&interval=daily`
+      `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=14`
     );
     const data = await response.json();
     setChartData(data);
@@ -55,13 +59,14 @@ function Coin() {
 
   let convertedDate = chartData.prices.map((date) => {
     const newDate = new Date(date[0]).toLocaleDateString("en-us", {
-      month: "short",
+      month: "numeric",
       day: "numeric",
     });
     return newDate;
   });
 
   const options = {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
       legend: {
@@ -70,6 +75,7 @@ function Coin() {
       title: {
         display: true,
         text: `${coin.name} Price Chart`,
+        color: darkTheme ? "#FFF" : "#000",
       },
     },
     scales: {
@@ -78,6 +84,12 @@ function Coin() {
           callback: function (value, index, ticks) {
             return "$" + value.toLocaleString();
           },
+          color: darkTheme ? "#FFF" : "#000",
+        },
+      },
+      x: {
+        ticks: {
+          color: darkTheme ? "#FFF" : "#000",
         },
       },
     },
@@ -99,14 +111,17 @@ function Coin() {
           }),
         borderColor: "rgb(255,99,132)",
         backgroundColor: "rgba(255,99,132,0.5)",
+        color: darkTheme ? "#FFF" : "#000",
       },
     ],
   };
 
   return (
-    <div>
-      <Line options={options} data={data} />
-    </div>
+    <>
+      <div className="chart-container">
+        <Line options={options} data={data} />
+      </div>
+    </>
   );
 }
 
