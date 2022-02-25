@@ -12,7 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import CoinStatistics from "./CoinStatistics";
+import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 
 ChartJS.register(
   CategoryScale,
@@ -25,8 +25,9 @@ ChartJS.register(
 );
 
 function Coin() {
-  const [coin, setCoin] = useState([]);
+  const [coin, setCoin] = useState();
   const [chartData, setChartData] = useState([]);
+  const [days, setDays] = useState("14");
 
   const darkTheme = useTheme();
 
@@ -42,7 +43,7 @@ function Coin() {
 
   const getChart = async () => {
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=14`
+      `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
     );
     const data = await response.json();
     setChartData(data);
@@ -51,13 +52,13 @@ function Coin() {
   useEffect(() => {
     coinData();
     getChart();
-  }, []);
+  }, [days]);
 
-  if (!chartData.prices) {
+  if (chartData === undefined) {
     return <p>Loading...</p>;
   }
 
-  let convertedDate = chartData.prices.map((date) => {
+  let convertedDate = chartData.prices?.map((date) => {
     const newDate = new Date(date[0]).toLocaleDateString("en-us", {
       month: "numeric",
       day: "numeric",
@@ -65,8 +66,20 @@ function Coin() {
     return newDate;
   });
 
+  if (coin === undefined) {
+    return <p>Loading...</p>;
+  }
+
   const options = {
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
     responsive: true,
     plugins: {
       legend: {
@@ -79,17 +92,23 @@ function Coin() {
       },
     },
     scales: {
-      y: {
+      yAxes: {
         ticks: {
           callback: function (value, index, ticks) {
             return "$" + value.toLocaleString();
           },
           color: darkTheme ? "#FFF" : "#000",
         },
+        grid: {
+          color: darkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(0,0,0,0.1)",
+        },
       },
-      x: {
+      xAxes: {
         ticks: {
           color: darkTheme ? "#FFF" : "#000",
+        },
+        grid: {
+          color: darkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(0,0,0,0.1)",
         },
       },
     },
@@ -110,14 +129,51 @@ function Coin() {
             return coinData;
           }),
         borderColor: "rgb(255,99,132)",
-        backgroundColor: "rgba(255,99,132,0.5)",
-        color: darkTheme ? "#FFF" : "#000",
+        backgroundColor: "#007fff",
       },
     ],
   };
 
   return (
     <>
+      <div className="coin-stats">
+        <p>Rank #{coin.market_cap_rank}</p>
+        <img src={coin.image?.small} alt={coin.name} />
+        <h2>
+          {coin.name} ({coin.symbol.toUpperCase()})
+        </h2>
+        <p>${coin.market_data.current_price.usd.toLocaleString()}</p>
+        <p>
+          <span>Market Cap </span>$
+          {coin.market_data.market_cap.usd.toLocaleString()}
+        </p>
+        {coin.market_data.price_change_percentage_24h > 0 ? (
+          <p className="price-change-positive">
+            <GoTriangleUp className="price-change-icon" />
+            {coin.market_data.price_change_percentage_24h.toFixed(1)}%
+          </p>
+        ) : (
+          <p className="price-change-negative">
+            <GoTriangleDown className="price-change-icon" />
+            {coin.market_data.price_change_percentage_24h.toFixed(1)}%
+          </p>
+        )}
+
+        <p>
+          <span>Circulating Supply </span>
+          {coin.market_data.circulating_supply.toLocaleString("en-US", {
+            maximumFractionDigits: 0,
+          })}
+        </p>
+      </div>
+      <div className="chart-controls">
+        <button onClick={() => setDays("1")}>1d</button>
+        <button onClick={() => setDays("7")}>7d</button>
+        <button onClick={() => setDays("14")}>14d</button>
+        <button onClick={() => setDays("30")}>30d</button>
+        <button onClick={() => setDays("90")}>90d</button>
+      </div>
+
       <div className="chart-container">
         <Line options={options} data={data} />
       </div>

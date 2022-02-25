@@ -1,18 +1,41 @@
+canvas {
+  margin: 0 auto !important;
+  height: 575px !important;
+  width: 600px !important;
+}
+
 .chart-container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 20px;
+  /* margin: 50px; */
 }
 
-canvas {
-  height: 100%;
+.coin-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-@media only screen and (max-width: 600px) {
-  .chart-container {
-    width: 95%;
-    margin: 10px;
-  }
+.price-change-positive {
+  color: green;
+}
+
+.price-change-negative {
+  color: red;
+}
+
+.price-change-icon {
+  position: relative;
+  top: 3px;
+  padding-right: 2px;
+}
+
+.chart-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 }
