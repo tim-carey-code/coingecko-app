@@ -54,7 +54,11 @@ function Coin() {
     getChart();
   }, [days]);
 
-  if (chartData === undefined) {
+  if (chartData === undefined || null) {
+    return <p>Loading...</p>;
+  }
+
+  if (coin === undefined || null) {
     return <p>Loading...</p>;
   }
 
@@ -65,10 +69,6 @@ function Coin() {
     });
     return newDate;
   });
-
-  if (coin === undefined) {
-    return <p>Loading...</p>;
-  }
 
   const options = {
     maintainAspectRatio: false,

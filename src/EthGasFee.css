@@ -1,0 +1,22 @@
+.eth-gas > span {
+  color: #2b58a1;
+}
+
+.eth-gas-tooltip {
+  font-size: 14px;
+  position: absolute;
+  padding-top: 10px;
+  width: 160px;
+  height: 150px;
+  background-color: black;
+  z-index: 1;
+}
+
+.eth-gas-tooltip > p {
+  padding: 10px;
+}
+
+.eth-gas-icon {
+  position: relative;
+  top: 3px;
+}

@@ -15,7 +15,7 @@ function PaginatedItems({ itemsPerPage, coinList }) {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(coinList.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(coinList.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, coinList]);
+  }, [itemOffset, itemsPerPage, coinList, browserWidth]);
 
   const handlePageClick = (e) => {
     const newOffset = (e.selected * itemsPerPage) % coinList.length;
@@ -31,6 +31,10 @@ function PaginatedItems({ itemsPerPage, coinList }) {
   };
 
   window.addEventListener("resize", handleResize);
+
+  if (currentItems == null) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

@@ -10,6 +10,9 @@ function Coins({ currentItems }) {
   const getFavoriteCoins = JSON.parse(localStorage.getItem("favorites"));
 
   useEffect(() => {
+    if (getFavoriteCoins == null) {
+      return;
+    }
     if (getFavoriteCoins !== 0) {
       setFavorites([...getFavoriteCoins]);
     }
