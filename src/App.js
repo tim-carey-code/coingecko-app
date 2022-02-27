@@ -34,6 +34,7 @@ function App() {
           <Route exact path="/:coinid" element={<Coin />} />
         </Routes>
       </Router>
+
     </div>
   );
 }

@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <>
       <div className={NavCSS.container}>
-        <h1 className={NavCSS.header}>
+        <h1 className='hover:underline m-2'>
           <a href="/">CoinGecko App</a>
         </h1>
         <Search className={NavCSS.searchBar} />
