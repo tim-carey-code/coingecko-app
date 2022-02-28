@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Coin.css";
 import { useTheme } from "./ThemeContext";
 import {
@@ -31,6 +31,8 @@ function Coin() {
 
   const darkTheme = useTheme();
 
+  const hasUnmounted = useRef(false);
+
   const coinId = window.location.pathname.split("/").splice(1).toString();
 
   const coinData = async () => {
@@ -52,6 +54,10 @@ function Coin() {
   useEffect(() => {
     coinData();
     getChart();
+
+    return () => {
+      hasUnmounted.current = true;
+    };
   }, [days]);
 
   if (chartData === undefined || null) {
