@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import Loader from "./Loader";
 
 ChartJS.register(
   CategoryScale,
@@ -60,11 +61,11 @@ function Coin() {
   }, [days]);
 
   if (chartData === undefined || null) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (coin === undefined || null) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   let convertedDate = chartData.prices?.map((date) => {
@@ -122,7 +123,7 @@ function Coin() {
   const labels = convertedDate;
 
   if (labels === undefined) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   const data = {
