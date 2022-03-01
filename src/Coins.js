@@ -7,9 +7,9 @@ function Coins({ currentItems }) {
   const [favorites, setFavorites] = useState([]);
   const darkTheme = useTheme();
 
-  const getFavoriteCoins = JSON.parse(localStorage.getItem("favorites"));
-
   useEffect(() => {
+    const getFavoriteCoins = JSON.parse(localStorage.getItem("favorites"));
+
     if (getFavoriteCoins == null) {
       return;
     }
@@ -26,7 +26,7 @@ function Coins({ currentItems }) {
   const addFav = (coinId) => {
     let array = favorites;
     let addArray = true;
-    array.map((item, key) => {
+    array.forEach((item, key) => {
       if (item === coinId) {
         array.splice(key, 1);
         addArray = false;
@@ -80,7 +80,11 @@ function Coins({ currentItems }) {
                   </td>
                   <td className="text-left">
                     <a className="hover:underline" href={`/${coin.id}`}>
-                      <img className="w-7 h-7 inline" src={coin.image} alt={coin.name} />
+                      <img
+                        className="w-7 h-7 inline"
+                        src={coin.image}
+                        alt={coin.name}
+                      />
 
                       <p className="inline ml-4">{coin.name}</p>
                     </a>
@@ -143,7 +147,7 @@ function Coins({ currentItems }) {
               </tbody>
             ))}
         </table>
-      </div >
+      </div>
     </>
   );
 }
