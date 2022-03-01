@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import "./Coins.css";
 import { useTheme } from "./ThemeContext";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 

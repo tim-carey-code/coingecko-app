@@ -4,8 +4,6 @@ import { useTheme } from "./ThemeContext";
 import Coin from "./Coin";
 import Navbar from "./Navbar";
 import Home from "./Home";
-import "./App.css";
-import EthGasFee from "./EthGasFee";
 
 function App() {
   const darkTheme = useTheme();
@@ -29,9 +27,6 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center">
-        <EthGasFee />
-      </div>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />

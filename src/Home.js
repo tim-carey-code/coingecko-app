@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PaginatedItems from "./PaginatedItems";
+import EthGasFee from "./EthGasFee";
 
 function Home() {
   const [coinList, setCoinList] = useState([]);
@@ -26,6 +27,9 @@ function Home() {
 
   return (
     <>
+      <div className="flex justify-center items-center">
+        <EthGasFee />
+      </div>
       <PaginatedItems itemsPerPage={10} coinList={coinList} />
     </>
   );
