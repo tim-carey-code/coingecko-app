@@ -121,6 +121,10 @@ function Coin() {
 
   const labels = convertedDate;
 
+  if (labels === undefined) {
+    return <p>Loading...</p>;
+  }
+
   const data = {
     labels,
     datasets: [

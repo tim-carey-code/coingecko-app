@@ -22,11 +22,11 @@ function ThemeSwitch() {
       />
       <span
         className="flex 
-      cursor-pointer 
-      w-12 h-6 rounded-[100px] bg-[#bfbfbf] relative duration-200 
-      before:absolute before:duration-200 before:top-0.5 
-      before:left-0.5 before:w-5 before:h-5 before:rounded-[21px] 
-      before:bg-[#fff] before:shadow-[0_2px_4px_0_rgba(0, 35, 11, 0.2)] "
+          cursor-pointer 
+          w-12 h-6 rounded-[100px] bg-[#bfbfbf] relative duration-200 
+          before:absolute before:duration-200 before:top-0.5 
+          before:left-0.5 before:w-5 before:h-5 before:rounded-[21px] 
+          before:bg-[#fff] before:shadow-[0_2px_4px_0_rgba(0, 35, 11, 0.2)] "
       />
     </label>
   );
