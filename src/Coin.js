@@ -38,19 +38,27 @@ function Coin() {
     const coinId = window.location.pathname.split("/").splice(1).toString();
 
     const coinData = async () => {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}?tickers=true&market_data=true`
-      );
-      const data = await response.json();
-      setCoin(data);
+      try {
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/coins/${coinId}?tickers=true&market_data=true`
+        );
+        const data = await response.json();
+        setCoin(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const getChart = async () => {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
-      );
-      const data = await response.json();
-      setChartData(data);
+      try {
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
+        );
+        const data = await response.json();
+        setChartData(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     coinData();
     getChart();

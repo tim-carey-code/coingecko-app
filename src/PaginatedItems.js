@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "./ThemeContext";
 import ReactPaginate from "react-paginate";
 import Coins from "./Coins";
+import Loader from "./Loader";
 import "./PaginatedItems.css";
 
 function PaginatedItems({ itemsPerPage, coinList }) {
@@ -32,8 +33,8 @@ function PaginatedItems({ itemsPerPage, coinList }) {
 
   window.addEventListener("resize", handleResize);
 
-  if (currentItems == null) {
-    return <p>Loading...</p>;
+  if (currentItems == null || undefined) {
+    return <Loader />;
   }
 
   return (

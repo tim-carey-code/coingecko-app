@@ -9,11 +9,15 @@ function EthGasFee() {
   const [mouseOver, setMouseOver] = useState(false);
 
   const getGas = async () => {
-    const response = await fetch(
-      `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
-    );
-    const data = await response.json();
-    setEthGas(data);
+    try {
+      const response = await fetch(
+        `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
+      );
+      const data = await response.json();
+      setEthGas(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
